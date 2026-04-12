@@ -1,0 +1,326 @@
+🎻
+Despliegue de una Aplicación
+Web Completa con Docker
+Compose
+
+Objetivo
+El propósito de esta actividad es evaluar la capacidad de cada aprendiz para
+construir, contenerizar, publicar y desplegar una aplicación web full stack
+utilizando Docker Compose.
+La solución debe estar compuesta por:
+frontend
+backend
+base de datos PostgreSQL
+La aplicación deberá poder ejecutarse únicamente con Docker Compose, sin
+pasos manuales adicionales.
+
+Contexto de la aplicación
+Se debe desarrollar una aplicación web llamada:
+
+BookIt — Sistema de reservas de citas
+La aplicación permitirá gestionar servicios y reservas de citas de clientes.
+El sistema debe permitir que un usuario pueda:
+consultar los servicios disponibles
+registrar una cita
+
+Despliegue de una Aplicación Web Completa con Docker Compose 1
+
+consultar citas registradas
+cancelar una cita
+marcar una cita como atendida
+
+Requerimiento principal de evaluación
+La aplicación será evaluada en una máquina diferente a la del aprendiz.
+El evaluador debe poder ejecutar únicamente el siguiente comando:
+docker compose up -d
+Si la aplicación no queda completamente funcional solo con ese comando, la
+actividad se considera no aprobada.
+No se permite que el evaluador tenga que ejecutar pasos adicionales como:
+instalar dependencias manualmente
+construir imágenes manualmente
+correr scripts fuera de Docker Compose
+crear tablas manualmente
+entrar a contenedores para configurar la aplicación
+
+Requerimientos funcionales mínimos
+1. Gestión de servicios
+La aplicación debe manejar una lista de servicios disponibles.
+Cada servicio debe tener como mínimo los siguientes campos:
+id
+nombre
+descripción
+duración en minutos
+
+Despliegue de una Aplicación Web Completa con Docker Compose 2
+
+Ejemplos de servicios:
+corte de cabello
+asesoría académica
+consulta técnica
+tutoría
+
+2. Gestión de citas
+La aplicación debe permitir registrar citas.
+Cada cita debe tener como mínimo los siguientes campos:
+id
+nombre del cliente
+correo del cliente
+fecha
+hora
+estado
+servicio asociado
+Estados permitidos:
+PENDING
+DONE
+CANCELLED
+
+Funcionalidades mínimas del frontend
+El frontend debe permitir como mínimo:
+listar los servicios disponibles
+registrar una nueva cita
+listar las citas registradas
+
+Despliegue de una Aplicación Web Completa con Docker Compose 3
+
+filtrar citas por estado
+marcar una cita como atendida
+cancelar una cita
+
+Funcionalidades mínimas del backend
+El backend debe exponer como mínimo los siguientes endpoints:
+Servicios
+GET /services
+Citas
+GET /appointments
+POST /appointments
+PATCH /appointments/:id/status
+DELETE /appointments/:id
+Salud del sistema
+GET /health
+
+Reglas de negocio mínimas
+La aplicación debe cumplir como mínimo con las siguientes reglas:
+no se puede crear una cita sin servicio asociado
+no se puede crear una cita con campos vacíos
+el estado inicial de una cita debe ser PENDING
+una cita cancelada no puede marcarse como atendida
+una cita atendida no puede cancelarse
+
+Requerimientos técnicos obligatorios
+
+Despliegue de una Aplicación Web Completa con Docker Compose 4
+
+1. Arquitectura en contenedores
+La solución debe incluir mínimo estos tres servicios en el archivo docker-compose.yml
+o compose.yml
+frontend
+backend
+db
+
+2. Base de datos obligatoria
+La base de datos debe ser una relacional.
+
+3. Imágenes Docker
+Cada aprendiz debe construir y publicar en Docker Hub las siguientes imágenes:
+imagen del frontend
+imagen del backend
+El archivo docker-compose.yml entregado debe usar las imágenes publicadas en
+Docker Hub.
+Ejemplo:
+services:
+frontend:
+image: usuario/bookit-frontend:latest
+backend:
+image: usuario/bookit-backend:latest
+No se acepta una solución que dependa de que el evaluador tenga que construir
+las imágenes manualmente.
+4. Persistencia de datos
+La base de datos debe utilizar un volumen para garantizar persistencia de la
+información.
+
+Despliegue de una Aplicación Web Completa con Docker Compose 5
+
+Esto significa que los datos no deben perderse si el contenedor del backend o de
+la base de datos se reinicia.
+
+5. Variables de entorno
+La configuración sensible y de conexión debe manejarse mediante variables de
+entorno.
+Como mínimo se espera el uso de variables como:
+POSTGRES_DB
+POSTGRES_USER
+POSTGRES_PASSWORD
+DATABASE_URL o equivalente
+
+6. Comunicación entre contenedores
+El backend debe conectarse a PostgreSQL utilizando el nombre del servicio
+definido en Docker Compose.
+Ejemplo correcto:
+DB_HOST=db
+No se acepta el uso de localhost para la comunicación entre contenedores.
+7. Healthcheck
+La solución debe incluir como mínimo:
+endpoint GET /health en el backend
+healthcheck en la base de datos
+8. Healthchecks obligatorios en Docker Compose
+El archivo docker-compose.yml debe incluir healthchecks funcionales para validar la
+disponibilidad y comunicación básica entre los servicios.
+Se exige como mínimo:
+
+Despliegue de una Aplicación Web Completa con Docker Compose 6
+
+un healthcheck para la base de datos
+un healthcheck para el backend
+un healthcheck para el frontend
+Base de datos
+El servicio de base de datos debe incluir un healthcheck que valide que está listo
+para recibir conexiones.
+Backend
+El servicio de backend debe incluir un healthcheck que valide que la API está
+operativa y que puede responder correctamente.
+Se recomienda que este healthcheck consulte el endpoint:
+/health
+
+Criterio de evaluación
+La solución debe demostrar conectividad operativa entre:
+frontend → backend
+backend → base de datos
+Si alguna de estas comunicaciones falla, la solución se considera incompleta.
+
+Tecnologías permitidas
+Frontend
+Puede desarrollarse con cualquiera de las siguientes tecnologías, o similares:
+Angular
+React
+Vue
+Backend
+
+Despliegue de una Aplicación Web Completa con Docker Compose 7
+
+Puede desarrollarse con cualquiera de las siguientes tecnologías, o similares:
+Node.js + Express / NestJS / Fastify
+Java + Spring Boot
+Python + Flask / FastAPI
+.NET
+Go
+Rust
+Base de datos
+Base de datos relacional obligatoria
+
+Estructura esperada del proyecto
+La estructura del proyecto puede organizarse de forma similar a esta:
+proyecto/
+├── docker-compose.yml
+├── README.md
+├── .env.example
+├── frontend/
+│ ├── Dockerfile
+│ └── ...
+├── backend/
+│ ├── Dockerfile
+│ └── ...
+
+Entregables obligatorios
+Cada aprendiz debe entregar:
+1. Proyecto completo
+Debe incluir:
+
+Despliegue de una Aplicación Web Completa con Docker Compose 8
+
+código fuente del frontend
+código fuente del backend
+archivo docker-compose.yml
+Dockerfile del frontend
+Dockerfile del backend
+archivo README.md
+
+2. README.md
+Debe incluir obligatoriamente:
+nombre del proyecto
+descripción breve
+nombres o enlaces de las imágenes publicadas en Docker Hub
+instrucción exacta para ejecutar la aplicación
+URL del frontend
+URL de prueba del backend
+Ejemplo esperado:
+docker compose up -d
+Ejemplo de acceso:
+http://localhost:8080
+http://localhost:3000/health
+
+3. Imágenes públicas en Docker Hub
+Debe entregar los nombres públicos de sus imágenes, por ejemplo:
+usuario/bookit-frontend
+usuario/bookit-backend
+
+Despliegue de una Aplicación Web Completa con Docker Compose 9
+
+Si las imágenes no existen, no son públicas o no corresponden al proyecto
+entregado, la actividad se considera no aprobada.
+
+Criterios de evaluación
+La actividad se aprueba si:
+docker compose up -d levanta correctamente todos los servicios
+el frontend abre correctamente
+el frontend consume correctamente el backend
+el backend responde correctamente
+el backend se conecta correctamente a la base de datos
+se pueden registrar citas
+se pueden listar citas
+se pueden cambiar estados
+se pueden cancelar citas
+la persistencia de datos funciona
+las imágenes del frontend y backend están publicadas en Docker Hub
+
+La actividad no se aprueba si ocurre cualquiera de los
+siguientes casos:
+algún contenedor falla o se detiene sin control
+el frontend no carga
+el backend no responde
+el backend no conecta con la base de datos
+hay errores de configuración entre servicios
+hay errores de CORS, networking o puertos
+se requiere ejecutar comandos adicionales fuera de docker compose up -d
+
+Despliegue de una Aplicación Web Completa con Docker Compose 10
+
+no existen imágenes publicadas en Docker Hub
+no hay persistencia de datos
+la aplicación no cumple con las funcionalidades mínimas
+
+Criterio principal de validación
+La evaluación será principalmente funcional.
+En otras palabras:
+si funciona, aprueba; si no funciona, no aprueba.
+No se evaluará únicamente que “el código esté bonito” o “la estructura se vea
+bien”.
+Se evaluará principalmente que la solución sea desplegable, reproducible y
+funcional en un entorno diferente al del desarrollador.
+
+Puntos extra opcionales
+Se podrá considerar reconocimiento adicional si la solución incluye buenas
+prácticas como:
+multi-stage builds
+frontend servido con Nginx
+migraciones automáticas al iniciar
+mejor organización del proyecto
+validaciones adicionales
+documentación clara y completa
+manejo adecuado de errores
+uso correcto de .env.example
+
+Recomendación final
+
+Despliegue de una Aplicación Web Completa con Docker Compose 11
+
+Antes de entregar, cada aprendiz debe probar la aplicación desde cero
+ejecutando como mínimo:
+docker compose down -v
+docker compose up -d
+docker compose ps
+docker compose logs
+Y verificar que:
+el frontend carga
+el backend responde
+la base de datos funciona
+la aplicación permite registrar y gestionar citas correctamente

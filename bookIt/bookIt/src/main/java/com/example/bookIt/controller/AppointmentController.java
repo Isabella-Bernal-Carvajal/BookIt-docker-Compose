@@ -28,21 +28,18 @@ public class AppointmentController {
 
     private final AppointmentService appointmentService;
 
-    /** GET /appointments?status=PENDING */
     @GetMapping
     public ResponseEntity<List<AppointmentResponseDTO>> getAll(
             @RequestParam(required = false) AppointmentStatus status) {
         return ResponseEntity.ok(appointmentService.findAll(status));
     }
 
-    /** POST /appointments */
     @PostMapping
     public ResponseEntity<AppointmentResponseDTO> create(
             @Valid @RequestBody AppointmentRequestDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(appointmentService.create(dto));
     }
 
-    /** PATCH /appointments/{id}/status */
     @PatchMapping("/{id}/status")
     public ResponseEntity<AppointmentResponseDTO> updateStatus(
             @PathVariable Long id,
@@ -50,7 +47,6 @@ public class AppointmentController {
         return ResponseEntity.ok(appointmentService.updateStatus(id, dto));
     }
 
-    /** DELETE /appointments/{id} */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         appointmentService.delete(id);
