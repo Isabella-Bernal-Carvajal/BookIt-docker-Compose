@@ -12,7 +12,7 @@ import {
 } from './types';
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3000';
+  process.env.NEXT_PUBLIC_API_URL ?? 'https://localhost:8080';
 
 const client = axios.create({
   baseURL: BASE_URL,

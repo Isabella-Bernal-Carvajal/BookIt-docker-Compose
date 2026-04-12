@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Appointment } from '@/lib/types';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
-import { User, Mail, Calendar, Clock, CheckCircle, XCircle, Trash2 } from 'lucide-react';
+import { Mail, Calendar, Clock, CheckCircle, XCircle, Trash2 } from 'lucide-react';
 
 interface AppointmentCardProps {
   appointment: Appointment;

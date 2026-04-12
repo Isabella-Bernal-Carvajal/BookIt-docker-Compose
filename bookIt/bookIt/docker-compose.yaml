@@ -4,7 +4,7 @@ services:
     container_name: bookit_db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${DB_NAME:-bookit_db}
+      POSTGRES_DB: ${DB_NAME:-bookIt_db}
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
     ports:

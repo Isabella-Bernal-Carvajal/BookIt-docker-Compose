@@ -5,7 +5,6 @@ import ServiceCard from './ServiceCard';
 import Spinner from '@/components/ui/Spinner';
 import { ErrorAlert } from '@/components/ui/StateViews';
 import { EmptyState } from '@/components/ui/StateViews';
-import { LayoutGrid } from 'lucide-react';
 
 export default function ServiceList() {
   const { services, loading, error, refetch } = useServices();
