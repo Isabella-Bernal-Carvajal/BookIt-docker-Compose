@@ -51,4 +51,11 @@ INSERT INTO services (name, description, duration_minutes) VALUES
 ('Corte de cabello', 'Servicio de corte básico', 30),
 ('Asesoría académica', 'Orientación en temas educativos', 60),
 ('Consulta técnica', 'Soporte técnico especializado', 45),
+('Soporte remoto', 'Asistencia técnica a distancia', 50),
+('Consulta psicológica', 'Atención emocional básica', 60),
+('Sesión de coaching', 'Orientación personal y profesional', 60),
+('Entrenamiento personal', 'Rutina guiada de ejercicio', 60),
+('Plan nutricional', 'Asesoría en alimentación', 45),
+('Revisión médica general', 'Chequeo básico de salud', 30),
+('Consulta especializada', 'Evaluación médica avanzada', 60),
 ('Tutoría', 'Clases personalizadas', 90);
