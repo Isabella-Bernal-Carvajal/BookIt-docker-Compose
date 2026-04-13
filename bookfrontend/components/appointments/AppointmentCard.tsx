@@ -19,7 +19,7 @@ export default function AppointmentCard({
   onCancel,
   onDelete,
 }: AppointmentCardProps) {
-  const { id, clientName, clientEmail, date, time, status, service } =
+  const { id, client_name, client_email, date, time, status, service } =
     appointment;
 
   const [loadingDone, setLoadingDone] = useState(false);
@@ -52,10 +52,10 @@ export default function AppointmentCard({
       {/* Header */}
       <div className="flex items-start justify-between gap-4 mb-4">
         <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-white truncate">{clientName}</h3>
+          <h3 className="font-bold text-white truncate">{client_name}</h3>
           <div className="flex items-center gap-1.5 mt-0.5 text-slate-500 text-xs">
             <Mail className="w-3 h-3 shrink-0" />
-            <span className="truncate">{clientEmail}</span>
+            <span className="truncate">{client_email}</span>
           </div>
         </div>
         <Badge variant={status} />
@@ -68,7 +68,7 @@ export default function AppointmentCard({
           {service.name}
         </span>
         <span className="ml-auto text-xs text-slate-500 shrink-0">
-          {service.duration} min
+          {service.duration_minutes} min
         </span>
       </div>
 

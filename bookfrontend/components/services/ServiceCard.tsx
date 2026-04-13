@@ -47,13 +47,13 @@ export default function ServiceCard({
             {service.description}
           </p>
         </div>
-        <Badge variant="service" label={`${service.duration} min`} />
+        <Badge variant="service" label={`${service.duration_minutes} min`} />
       </div>
 
       <div className="mt-3 flex items-center gap-4 text-xs text-slate-500">
         <span className="flex items-center gap-1">
           <Clock className="w-3.5 h-3.5" />
-          {service.duration} minutos
+          {service.duration_minutes} minutos
         </span>
         <span className="flex items-center gap-1">
           <Tag className="w-3.5 h-3.5" />

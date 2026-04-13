@@ -8,13 +8,13 @@ export interface Service {
   id: number;
   name: string;
   description: string;
-  duration: number; // minutes
+  duration_minutes: number;
 }
 
 export interface Appointment {
   id: number;
-  clientName: string;
-  clientEmail: string;
+  client_name: string;
+  client_email: string;
   date: string;       // ISO date string  e.g. "2024-05-20"
   time: string;       // "HH:mm"
   status: AppointmentStatus;
@@ -22,9 +22,9 @@ export interface Appointment {
 }
 
 export interface CreateAppointmentPayload {
-  clientName: string;
-  clientEmail: string;
+  client_name: string;
+  client_email: string;
   date: string;
   time: string;
-  serviceId: number;
+  service_id: number;
 }

@@ -1,7 +1,7 @@
 package com.example.bookIt.dto;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class AppointmentRequestDTO {
     private String clientEmail;
 
     @NotNull(message = "La fecha es obligatoria")
-    @Future(message = "La fecha debe ser en el futuro")
+    @FutureOrPresent(message = "La fecha debe ser hoy o en el futuro")
     private LocalDate date;
 
     @NotNull(message = "La hora es obligatoria")

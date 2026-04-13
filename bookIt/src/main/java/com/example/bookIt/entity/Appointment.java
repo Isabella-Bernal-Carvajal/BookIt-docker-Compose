@@ -47,7 +47,7 @@ public class Appointment {
     private LocalTime time;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "varchar(20)")
+    @Column(nullable = false, columnDefinition = "appointment_status")
     private AppointmentStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)

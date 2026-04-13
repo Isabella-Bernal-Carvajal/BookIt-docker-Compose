@@ -85,11 +85,11 @@ export default function AppointmentForm({
     }
 
     const payload: CreateAppointmentPayload = {
-      clientName: fields.clientName.trim(),
-      clientEmail: fields.clientEmail.trim(),
+      client_name: fields.clientName.trim(),
+      client_email: fields.clientEmail.trim(),
       date: fields.date,
       time: fields.time,
-      serviceId: Number(fields.serviceId),
+      service_id: Number(fields.serviceId),
     };
 
     setSubmitting(true);
@@ -97,8 +97,9 @@ export default function AppointmentForm({
       await createAppointment(payload);
       showToast('success', '¡Cita registrada exitosamente!');
       onSuccess?.();
-    } catch {
-      showToast('error', 'No se pudo crear la cita. Verifica los datos.');
+    } catch (err: any) {
+      const msg = err.response?.data?.message ?? 'No se pudo crear la cita. Verifica los datos.';
+      showToast('error', msg);
     } finally {
       setSubmitting(false);
     }

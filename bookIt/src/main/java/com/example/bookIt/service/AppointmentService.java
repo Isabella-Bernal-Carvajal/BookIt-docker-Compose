@@ -28,14 +28,15 @@ public class AppointmentService {
     private final ServiceService serviceService;
 
     /** GET /appointments (con filtro opcional por estado) */
+    @Transactional(readOnly = true)
     public List<AppointmentResponseDTO> findAll(AppointmentStatus status) {
         List<Appointment> appointments;
         if (status != null) {
             log.info("Fetching appointments with status={}", status);
-            appointments = appointmentRepository.findByStatus(status);
+            appointments = appointmentRepository.findByStatusWithService(status);
         } else {
             log.info("Fetching all appointments");
-            appointments = appointmentRepository.findAll();
+            appointments = appointmentRepository.findAllWithService();
         }
         return appointments.stream().map(this::toDTO).toList();
     }

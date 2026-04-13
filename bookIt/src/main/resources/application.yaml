@@ -3,9 +3,9 @@ spring:
     name: bookIt
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/bookIt_db
-    username: postgres
-    password: "1092457853Isa*"
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:bookit_db}?stringtype=unspecified
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       connection-timeout: 20000
@@ -13,7 +13,7 @@ spring:
       pool-name: BookItHikariPool
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     show-sql: false
     open-in-view: false
     properties:
@@ -23,6 +23,9 @@ spring:
         jdbc:
           time_zone: UTC
 
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
 logging:
   level:
     com.example.bookIt: INFO
@@ -31,5 +34,14 @@ logging:
 
 server:
   port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
 
 
